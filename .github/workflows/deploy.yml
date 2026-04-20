@@ -18,12 +18,5 @@ jobs:
           script: |
             cd /home/ubuntu/fastapi-app/fastapi-aws-ec2
             git pull origin master
-            docker build -t fastapi-app .
-            docker stop fastapi || true
-            docker rm fastapi || true
-            docker run -d \
-              --name fastapi \
-              --restart always \
-              -p 8000:8000 \
-              fastapi-app
-            echo "Deploy done"
+            docker compose up -d --build
+            echo "Deployment done"
